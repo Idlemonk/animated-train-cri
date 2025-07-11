@@ -1,0 +1,29 @@
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo 
+
+# Enviroment Folders
+cri.env/
+env/
+.venv/
+venv/
+
+#Djenago artifacts
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# IDE/editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Pipenv/virtualenv-related
+*.lock
+
+# Secrets and enviroment variables 
+.env
+
