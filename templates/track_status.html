@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Track Recovery Status - Crypto Recovery{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Track Recovery Status</h2>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <p>Enter your request ID to check the status of your recovery request.</p>
+    <form method="get">
+        <div class="mb-3">
+            <label for="request_id" class="form-label">Request ID</label>
+            <input type="text" class="form-control" id="request_id" name="request_id" placeholder="Enter your request ID">
+        </div>
+        <button type="submit" class="btn btn-primary">Track Status</button>
+    </form>
+    {% if status %}
+        <div class="alert alert-info mt-3">
+            <p>Status: {{ status }}</p>
+            <p>Message: {{ message }}</p>
+        </div>
+    {% elif error %}
+        <div class="alert alert-danger mt-3">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

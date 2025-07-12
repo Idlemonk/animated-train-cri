@@ -1,0 +1,139 @@
+/* style.css */
+
+/* General Form Styling */
+form input, form select, form textarea {
+    width: 100%; /* Full width */
+    height: 45px; /* Consistent height */
+    padding: 10px; /* Inner spacing */
+    font-size: 16px; /* Standard font size */
+    font-family: 'Arial', sans-serif; /* Consistent font */
+    color: #2c3e50; /* Text color */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: none; /* Remove shadow */
+    outline: none; /* Remove yellow outline */
+    transition: border-color 0.3s ease; /* Smooth focus effect */
+}
+
+/* Focus Effect */
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #007bff; /* Blue border on focus */
+    background-color: #ffffff; /* White background on focus */
+}
+
+/* Form Labels */
+form label {
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    color: #34495e;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Submit Button */
+form button[type="submit"] {
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    cursor: pointer;
+}
+
+/* Page Title Styling */
+.page-title {
+    font-size: 3rem; /* Make the title bigger */
+    color: #4caf50; /* Green color */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    font-family: 'Arial', sans-serif; /* Custom font */
+    text-align: center; /* Center alignment */
+    margin: 30px 0; /* Add spacing above and below */
+    letter-spacing: 2px; /* Add spacing between letters */
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    width: 100px; /* Increased width to fit the text */
+    height: 70px; /* Increased height to fit the text */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px; /* Slightly rounded corners */
+    font-size: 1rem; /* Adjusted font size */
+    text-align: center;
+    line-height: 1.2; /* Adjusted line height for text */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Added padding for better spacing */
+}
+
+.back-to-top:hover {
+    background-color: #0056b3;
+}
+
+.back-to-top-text {
+    display: block; /* Ensure the text is displayed */
+    font-size: 0.9rem; /* Slightly smaller font size for the text */
+    margin-bottom: 5px; /* Add spacing between text and arrow */
+}
+
+/* Questions Section Styling */
+.questions-section {
+    border-radius: 10px;
+    background-color: #f8f9fa; /* Light background */
+    color: #333; /* Dark text */
+    padding: 20px;
+}
+
+.questions-section h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.question {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.question:hover {
+    background-color: #f1f1f1;
+}
+
+.answer {
+    display: none; /* Initially hidden */
+    margin-left: 10px;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 10px;
+    border-left: 3px solid #007bff;
+    margin-bottom: 10px;
+}
+
+.arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+    transform: rotate(180deg); /* Rotate arrow when expanded */
+}

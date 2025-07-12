@@ -1,4 +1,4 @@
-
+*
 # Python bytecode
 __pycache__/
 *.py[cod]
@@ -26,4 +26,6 @@ staticfiles/
 
 # Secrets and enviroment variables 
 .env
+
+
 
