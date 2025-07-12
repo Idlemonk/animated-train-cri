@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Wallet Recovery - Crypto Recovery{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+        <h2>Wallet Recovery</h2>
+        <p>Enter your details below to start the wallet recovery process.</p>
+        <form method="post">
+                {% csrf_token %}
+                <label for="email">Email Address:</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                <label for="wallet_name">Wallet Name:</label>
+                <input type="text" name="wallet_name" class="form-control" placeholder="Enter your wallet name">
+                <label for="recovery_status">Recovery_Status:</label>
+                <input type="recovery_status" name="recovery_status" class="form-control" placeholder="Recovery status updated here">
+                <button type="submit" class="btn btn-primary mt-3">Recover Wallet</button>
+        </form>
+        {% if success %}
+                <p class="alert alert-success">Wallet recovery process started!</p>
+        {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% block title %}Contact Us{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="background: url('{% static "images/up5.jpg" %}') no-repeat center center/cover; min-height: 100vh; padding: 50px 0;">
+    <div class="container bg-light p-5 rounded shadow" style="max-width: 800px;">
+        <h2 class="text-center mb-4" style="font-family: 'Arial', sans-serif; color: #2c3e50;">Contact Us</h2>
+        <p class="text-center" style="font-family: 'Arial', sans-serif; color: #34495e;">If you have any questions or concerns, feel free to reach out to us using the form below.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+            </div>
+            <div class="mb-3">
+                {{ form.country.label_tag }}
+                {{ form.country }}
+            </div>
+            <div class="mb-3">
+                {{ form.type_of_recovery.label_tag }}
+                {{ form.type_of_recovery }}
+            </div>
+            <div class="mb-3">
+                {{ form.message.label_tag }}
+                {{ form.message }}
+            </div>
+            <div class="form-check mb-3">
+                {{ form.privacy_policy }}
+                {{ form.privacy_policy.label_tag }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100" style="font-family: 'Arial', sans-serif;">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

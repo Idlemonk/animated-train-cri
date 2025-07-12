@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <img src="{{ image_url }}" alt="Crypto ETF Banner" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+
+    <section>
+        <h2>{{ btc_etf.name }}</h2>
+        <p>{{ btc_etf.description }}</p>
+    </section>
+
+    <section>
+        <h2>{{ eth_etf.name }}</h2>
+        <p>{{ eth_etf.description }}</p>
+    </section>
+
+    <section style="margin-top: 30px;">
+        <h3>Our Offering</h3>
+        <p>{{ sales_info }}</p>
+    </section>
+</body>
+</html>
+

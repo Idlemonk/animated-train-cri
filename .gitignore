@@ -27,3 +27,5 @@ staticfiles/
 # Secrets and enviroment variables 
 .env
 
+
+
