@@ -1,32 +1,37 @@
-
-from django.shortcuts import render, redirect 
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.urls import reverse  # Ensure reverse is imported for URL resolution
-from .models import RecoveryRequest, WalletRecovery, BlockchainTransaction, Item, Testimonial
-from .forms import RecoveryRequestForm, ContactForm
-import requests 
+from .models import RecoveryRequest, Contact
+from .schemas import RecoveryRequestSchema, ContactSchema
+from pydantic import ValidationError
 
-# Create your views here.
+from django.shortcuts import render
 
-# Home page view
-'''def home(request):
-    testimonials = Testimonial.objects.all()  # Fetch all testimonials from the database
-    return render(request, 'home.html', {'testimonials': testimonials})'''
+def home(request):
+    # List of questions and answers
+    questions = [
+        {"id": 1, "question": "Which recovery plan should I choose?", "answer": "The best recovery plan depends on your financial goals, risk appetite, and timeline. At BlackRock, we offer a variety of options—from conservative portfolios for capital preservation to aggressive growth strategies. Our team can help tailor a plan specifically for you, ensuring your recoverys align with your future vision."},
+        {"id": 2, "question": "What are the benefits of investing with BlackRock?", "answer": "Investing with BlackRock gives you access to a global leader in asset management with a proven track record, cutting-edge technology, and a commitment to transparency. You’ll benefit from diversified recovery opportunities, expert insights, and personalized support at every step of your financial journey."},
+        {"id": 3, "question": "Do I need to create an account before my recovery process can kick off?", "answer": "Yes, creating an account is the first step to ensure a secure and streamlined recovery process. It enables us to verify your identity, track your case efficiently, and provide real-time updates on your crypto recovery status."},
+        {"id": 4, "question": "What are some key statistics about crypto recovery?", "answer": "While recovery outcomes vary by case, statistics show that timely action significantly increases success rates. Over 70% of recoverable cases are resolved when reported within the first 14 days. Our advanced tracing tools and legal partnerships enhance recovery efforts across major blockchains."},
+        {"id": 5, "question": "Can I pay directly using cryptocurrency?", "answer": "Absolutely. We accept payments in major cryptocurrencies such as Bitcoin, Ethereum, and USDT. Our secure payment gateway ensures fast and seamless transactions with full encryption and confirmation."},
+    ]
+    return render(request, 'home.html', {'questions': questions})
 
-# Submit a recovery request
 def submit_recovery_request(request):
     if request.method == 'POST':
-        form = RecoveryRequestForm(request.POST)
-        if form.is_valid():
-            form.save()
+        data = request.POST.dict()
+        try:
+            validated = RecoveryRequestSchema(**data)
+            RecoveryRequest.objects.create(**validated.dict(exclude={'created_at'}))
             messages.success(request, 'Your recovery request has been submitted successfully!')
             return redirect('home')
-        else:
-            messages.error(request, 'There was an error with your submission. Please try again.')
+        except ValidationError as e:
+            messages.error(request, f'Validation error: {e}')
+        except Exception as e:
+            messages.error(request, f'Error submitting form: {e}')
     else:
         form = RecoveryRequestForm()
-    return render(request, 'submit_request.html', {'form': form, 'title': 'Submit Recovery Request'})
+    return render(request, 'submit_request.html', {'form': RecoveryRequestForm(), 'title': 'Submit Recovery Request'})
 
 # Track recovery status
 def track_status(request):
@@ -79,50 +84,33 @@ def news_updates(request):
 
 def contact_view(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
+        data = request.POST.dict()
+        try:
+            validated = ContactSchema(**data)
+            Contact.objects.create(**validated.dict(exclude={'created_at'}))
             messages.success(request, 'Your message has been sent successfully!')
             return redirect('contact')
-        else:
-            messages.error(request, 'There was an error with your submission. Please try again.')
+        except ValidationError as e:
+            messages.error(request, f'Validation error: {e}')
+        except Exception as e:
+            messages.error(request, f'Error submitting form: {e}')
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'contact.html', {'form': ContactForm()})
 
-
-def home_with_items(request):
-    items = Item.objects.all()
-    testimonials = Testimonial.objects.all()
-    return render(request, 'home.html', {'items': items, 'testimonials': testimonials})
-
-
-# Define a view for a write-up display on the webpage
 def write_up(request):
     write_up_content = [
-        """
+        '''
         <h2>Cryptocurrency Recovery: From Obscurity to Mainstream Adoption</h2>
         <p>In the early days of cryptocurrency, the lack of regulatory oversight and the decentralized nature of the technology made it a prime target for criminal activities, such as money laundering, fraud, and theft. As the cryptocurrency market grew, so did the need for effective ways to recover stolen or misappropriated digital assets.</p>
-        """,
-        """
+        ''',
+        '''
         <h2>The Emergence of Cryptocurrency Forensics</h2>
         <p>To address these challenges, the cryptocurrency industry has evolved a range of specialized tools and techniques known as "cryptocurrency forensics." These tools leverage the transparency of blockchain technology to trace and analyze transaction flows, identify wallet addresses, and uncover the identities of individuals or entities involved in illicit activities.</p>
-        """,
-        """
+        ''',
+        '''
         <h2>Collaboration with Regulatory Authorities</h2>
         <p>As the cryptocurrency ecosystem has matured, there has been a growing emphasis on collaboration between the industry and regulatory bodies like the SEC, IRS, and FBI. This partnership has yielded several benefits.</p>
-        """
+        '''
     ]
     return render(request, 'home.html', {'write_up_content': write_up_content})
-
-def home(request):
-    # List of questions and answers
-    questions = [
-        {"id": 1, "question": "Which investment plan should I choose?", "answer": "The best investment plan depends on your financial goals, risk appetite, and timeline. At BlackRock, we offer a variety of options—from conservative portfolios for capital preservation to aggressive growth strategies. Our team can help tailor a plan specifically for you, ensuring your investments align with your future vision."},
-        {"id": 2, "question": "What are the benefits of investing with BlackRock?", "answer": "Investing with BlackRock gives you access to a global leader in asset management with a proven track record, cutting-edge technology, and a commitment to transparency. You’ll benefit from diversified investment opportunities, expert insights, and personalized support at every step of your financial journey."},
-        {"id": 3, "question": "Do I need to create an account before my recovery process can kick off?", "answer": "Yes, creating an account is the first step to ensure a secure and streamlined recovery process. It enables us to verify your identity, track your case efficiently, and provide real-time updates on your crypto recovery status."},
-        {"id": 4, "question": "What are some key statistics about crypto recovery?", "answer": "While recovery outcomes vary by case, statistics show that timely action significantly increases success rates. Over 70% of recoverable cases are resolved when reported within the first 14 days. Our advanced tracing tools and legal partnerships enhance recovery efforts across major blockchains."},
-        {"id": 5, "question": "Can I pay directly using cryptocurrency?", "answer": "Absolutely. We accept payments in major cryptocurrencies such as Bitcoin, Ethereum, and USDT. Our secure payment gateway ensures fast and seamless transactions with full encryption and confirmation."},
-    ]
-    return render(request, 'home.html', {'questions': questions})
-

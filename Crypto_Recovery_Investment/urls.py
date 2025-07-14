@@ -22,6 +22,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("main.urls")),
-    path("investment/", include("investment.urls")),
+    path("recovery/", include("recovery.urls")),
     
 ]

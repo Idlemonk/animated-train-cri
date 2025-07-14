@@ -8,11 +8,19 @@
     <meta name="description" content="Crypto Recovery - Your trusted platform for recovering lost or stolen cryptocurrency.">
     <title>Crypto Recovery | Recover Your Cryptocurrency</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background: url("{% static 'images/background.jpg' %}") no-repeat center center/cover;
+            background: url("{% static 'images/black-bricks-background.jpg' %}") no-repeat center center/cover;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -212,31 +220,31 @@
             background-color: #0056b3;
         }
 
-        #investment {
+        #recovery {
         background-color: #343a40; /* Dark grey background */
         padding: 20px 0; /* Reduced vertical spacing */
         }
 
-        #investment h2 {
+        #recovery h2 {
             font-size: 1.8rem; /* Slightly smaller font size for the heading */
             font-weight: bold;
             margin-bottom: 15px;
         }
 
-        #investment p {
+        #recovery p {
             font-size: 1rem; /* Smaller font size for the description */
             color: #ccc; /* Light grey text color */
             margin-bottom: 20px;
         }
 
-        #investment .btn-primary {
+        #recovery .btn-primary {
             padding: 10px 20px; /* Smaller button size */
             font-size: 1rem; /* Smaller font size for the button */
             border-radius: 5px; /* Rounded corners */
             text-transform: uppercase; /* Make text uppercase */
         }
 
-        #investment .btn-primary:hover {
+        #recovery .btn-primary:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
     </style>
@@ -298,14 +306,14 @@
     </section>
 
     <!-- Investment Segment -->
-<section id="investment" class="py-3 bg-dark text-white">
+<section id="recovery" class="py-3 bg-dark text-white">
     <div class="container text-center">
         <h2 class="mb-3" style="font-family: 'Comic Sans MS', sans-serif;">Investment Opportunities</h2>
         <p class="mb-3" style="font-family: 'Comic Sans MS', sans-serif;">
-            Explore our tailored investment plans designed to help you grow your wealth securely. 
+            Explore our tailored recovery plans designed to help you grow your wealth securely. 
             Choose from a variety of options that align with your financial goals and risk appetite.
         </p>
-        <a href="{% url 'investment_plans' %}" class="btn btn-primary btn-sm" style="font-family: 'Comic Sans MS', sans-serif;">Explore Investment Plans</a>
+        {#<a href="{% url 'recovery_plans' %}" class="btn btn-primary btn-sm" style="font-family: 'Comic Sans MS', sans-serif;">Explore Investment Plans</a>#}
     </div>
 </section>
 
@@ -392,7 +400,7 @@
             });
         });
     </script>
+<!-- Spline Embed (optional) -->
+<iframe src="https://my.spline.design/scene-url" frameborder="0" width="100%" height="400px"></iframe>
 </body>
 </html>
-
-

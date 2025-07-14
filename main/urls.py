@@ -1,7 +1,7 @@
 from . import views
 from django.contrib import admin
 from django.urls import path, include, re_path
-from . views import home, submit_recovery_request, track_status, about, wallet_recovery, blockchain_explorer, crypto_converter, contact_view, news_updates, write_up
+from . views import home, submit_recovery_request, contact_view, track_status, about, wallet_recovery, blockchain_explorer, crypto_converter, contact_view, news_updates, write_up
 from django.conf import settings
 from django.conf.urls.static import static
 
